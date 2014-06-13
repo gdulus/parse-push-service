@@ -1,0 +1,6 @@
+.VERSION.swp
+*.iml
+.idea/
+.gradle/
+build/
+target/
