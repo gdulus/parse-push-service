@@ -1,4 +1,4 @@
-package com.ps.service.pushNotofication
+package com.ps.service.pushNotification
 
 /**
  * @author pawel.gdula

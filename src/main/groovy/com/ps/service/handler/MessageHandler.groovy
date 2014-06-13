@@ -1,6 +1,6 @@
 package com.ps.service.handler
 
-import com.ps.service.pushNotofication.NotificationSender
+import com.ps.service.pushNotification.NotificationSender
 import groovy.util.logging.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 

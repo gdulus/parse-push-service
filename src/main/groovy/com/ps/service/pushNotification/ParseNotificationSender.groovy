@@ -1,4 +1,4 @@
-package com.ps.service.pushNotofication
+package com.ps.service.pushNotification
 
 import groovy.util.logging.Slf4j
 import groovyx.net.http.HTTPBuilder
