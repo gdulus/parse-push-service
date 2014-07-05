@@ -12,8 +12,8 @@ class NotificationException extends RuntimeException {
         responseCode = -1
     }
 
-    NotificationException(Long customerId, int responseCode) {
-        super("Error during sending notification for customer = ${customerId}, status = ${responseCode}")
+    NotificationException(Message message, int responseCode) {
+        super("Error during sending message = ${message}, status = ${responseCode}")
         this.responseCode = responseCode
     }
 }

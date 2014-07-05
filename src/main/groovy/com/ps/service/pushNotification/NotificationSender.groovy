@@ -11,5 +11,5 @@ public interface NotificationSender {
      * @param customerId Id of customer which should retrieve notification
      * @param notification Message to send
      */
-    public void send(final Long customerId, final String notification)
+    public void send(final Message message)
 }

@@ -1,10 +1,11 @@
 package com.ps.service
 
-import org.springframework.amqp.rabbit.core.RabbitTemplate
-import org.springframework.beans.factory.annotation.Autowired
+import org.apache.log4j.PropertyConfigurator
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
+import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.context.annotation.ComponentScan
+import org.springframework.core.io.ClassPathResource
 
 /**
  * @author pawel.gdula
@@ -13,11 +14,14 @@ import org.springframework.context.annotation.ComponentScan
 @EnableAutoConfiguration
 class Application {
 
-    @Autowired
-    RabbitTemplate rabbitTemplate;
 
     public static void main(String[] args) throws InterruptedException {
-        SpringApplication.run(Application.class, args);
+        // start boot app
+        ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
+        // overwrite Log4J configuration
+        ConfigSlurper configSlurper = new ConfigSlurper()
+        ConfigObject config = configSlurper.parse(new ClassPathResource("log4j.groovy").URL)
+        PropertyConfigurator.configure(config.toProperties())
     }
 
 }

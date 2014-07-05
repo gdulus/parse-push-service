@@ -39,26 +39,21 @@ class ParseNotificationSender implements NotificationSender {
     }
 
     @Override
-    public void send(final Long customerId, final String notification) {
-        if (!customerId || !notification) {
-            throw new NotificationException('Not null parameter required')
-        }
-
+    public void send(final Message message) {
         HTTPBuilder.request(POST) {
             uri.path = apiURI
             headers['X-Parse-Application-Id'] = applicationId
             headers['X-Parse-REST-API-Key'] = apiKey
             requestContentType = JSON
-            body = getBody(customerId, notification)
+            body = getBody(message.customerId, message.text)
 
             response.success = { resp ->
-                log.info('Message sent successfully to customer {} "{}"', customerId, notification)
+                log.info('Message sent successfully: {}', message)
             }
 
             response.failure = { resp ->
-                log.error('Message sent error to customer {} "{}"', customerId, notification)
                 int responseStatus = resp.status
-                throw new NotificationException(customerId, responseStatus)
+                throw new NotificationException(message, responseStatus)
             }
         }
     }

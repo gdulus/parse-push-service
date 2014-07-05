@@ -1,0 +1,5 @@
+notification.parse.applicationId: secret
+notification.parse.apiKey: secret
+amqp.host=localhost
+amqp.username=
+amqp.password=

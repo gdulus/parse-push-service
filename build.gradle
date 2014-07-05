@@ -1,13 +1,13 @@
-apply plugin: "groovy"
-apply plugin: "spring-boot"
-apply plugin: "application"
+apply plugin: 'groovy'
+apply plugin: 'spring-boot'
+apply plugin: 'application'
 
-sourceCompatibility = "1.6"
-targetCompatibility = "1.6"
+sourceCompatibility = '1.6'
+targetCompatibility = '1.6'
 
 version = "${version}"
 group = "${group}"
-mainClassName = "com.ps.service.Application"
+mainClassName = 'com.ps.service.Application'
 
 buildscript {
     ext {
@@ -22,8 +22,12 @@ buildscript {
 }
 
 jar {
-    baseName = 'spring-boot-sample-actuator'
+    baseName = 'push-notification-sender'
     version = '1.0.0'
+    manifest {
+        attributes 'Main-Class': 'com.ps.service.Application'
+    }
+
 }
 
 repositories {
@@ -31,11 +35,14 @@ repositories {
 }
 
 dependencies {
-    compile "org.codehaus.groovy.modules.http-builder:http-builder:0.7.1"
-    compile 'org.codehaus.groovy:groovy-all:2.3.2'
-    compile "org.springframework.boot:spring-boot-starter-amqp"
-    compile "org.springframework.boot:spring-boot-starter-actuator"
-    testCompile "org.springframework.boot:spring-boot-starter-test"
+    compile('org.codehaus.groovy.modules.http-builder:http-builder:0.7.1')
+    compile('com.mangofactory:org.graylog2.gelfj:1.0.2')
+    compile('org.codehaus.groovy:groovy-all:2.3.2')
+    compile('org.springframework.boot:spring-boot-starter-amqp') { exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging' }
+    compile('org.springframework.boot:spring-boot-starter-actuator') { exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging' }
+    compile 'org.springframework.boot:spring-boot-starter-log4j'
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 
 task wrapper(type: Wrapper) {
